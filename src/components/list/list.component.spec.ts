@@ -9,7 +9,7 @@
 import {async, TestBed, ComponentFixture} from '@angular/core/testing';
 import {ListComponent} from "./list.component";
 import {By} from "@angular/platform-browser";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {Column} from "../../model/column";
 import {Action} from "../../model/action";
 import {TestItem, RouterStub} from "../../test/mock";
