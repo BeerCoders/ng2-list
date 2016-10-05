@@ -1,9 +1,10 @@
 <table class="table table-bordered table-responsive item-list">
     <thead>
     <tr>
-        <th *ngFor="let column of columns">
-            <a *ngIf="column.sortable" (click)="sort($index)">{{ column.title }}</a>
-            <span *ngIf="!column.sortable">{{ column.title }}</span>
+        <th *ngFor="let key of properties"
+            [ngClass]="{'clickable': isSortable(key)}"
+            (click)="sort(key)">
+            {{ getTitle(key) }}
         </th>
     </tr>
     </thead>

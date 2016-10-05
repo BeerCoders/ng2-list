@@ -19,7 +19,7 @@ export class ListComponent implements OnChanges {
     @Input() rowAction: Action;
     @Output() onSort: EventEmitter<string> = new EventEmitter<string>();
 
-    protected properties: string[];
+    protected properties: string[] = [];
 
     constructor(private router: Router) {
         this.init();
@@ -31,13 +31,16 @@ export class ListComponent implements OnChanges {
         }
     }
 
-    protected init() {
+    init() {
         this.setColumnTitle();
         this.setProperties();
     }
 
-    sort(index: number) {
-        this.onSort.next(this.properties[index]);
+    sort(key: string) {
+        let col = this.getColumn(key);
+        if (col && col.sortable) {
+            this.onSort.next(key);
+        }
     }
 
     onRowClick(item: Entity) {
@@ -47,15 +50,33 @@ export class ListComponent implements OnChanges {
         }
     }
 
+    isSortable(key: string): boolean {
+        let col = this.getColumn(key);
+        return col ? col.sortable : false;
+    }
+
+    getTitle(key: string) {
+        let col = this.getColumn(key);
+        return col ? col.title : '';
+    }
+
+    getColumn(key: string): Column {
+        return this.columns[key];
+    }
+
     setProperties() {
-        this.properties = Object.keys(this.columns);
+        if (this.columns) {
+            this.properties = Object.keys(this.columns);
+        }
     }
 
     setColumnTitle() {
-        Object.keys(this.columns).map(key => {
-            if (!this.columns[key].title) {
-                this.columns[key].title = _.camelCase(key);
-            }
-        });
+        if (this.columns) {
+            Object.keys(this.columns).map(key => {
+                if (!this.columns[key].title) {
+                    this.columns[key].title = _.camelCase(key);
+                }
+            });
+        }
     }
 }
