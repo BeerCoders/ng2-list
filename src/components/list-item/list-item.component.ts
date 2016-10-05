@@ -33,7 +33,7 @@ export class ListItemComponent {
     }
 
     getValue(key: string) {
-        return this.item[key];
+        return ObjectService.getByString(this.item, key);
     }
 
     hasAction(key: string): boolean {

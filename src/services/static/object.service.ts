@@ -11,6 +11,6 @@ declare var _:any;
 
 export class ObjectService {
     static getByString(target:any, path:string) {
-        _.reduce(path.split('.'), (previous:any, current:any) => previous ? previous[current] : undefined, target);
+        return _.reduce(path.split('.'), (previous:any, current:any) => previous ? previous[current] : undefined, target);
     }
 }

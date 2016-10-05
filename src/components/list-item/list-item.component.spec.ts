@@ -48,4 +48,16 @@ describe('ListItemComponent', () => {
     it('should return name value', () => {
         expect(comp.getValue('name')).toEqual(expectedItem.name);
     });
+
+    it('should return nested name value', () => {
+        expect(comp.getValue('nested.name')).toEqual(expectedItem.nested.name);
+    });
+
+    it('should check name column hasAction', () => {
+        expect(comp.hasAction('name')).toEqual(expectedCols['name'].hasOwnProperty('action'));
+    });
+
+    it('should check name column hasCallback', () => {
+        expect(comp.hasCallback('name')).toEqual(expectedCols['name'].hasOwnProperty('callback'));
+    });
 });
