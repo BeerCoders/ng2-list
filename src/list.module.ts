@@ -8,21 +8,19 @@
  */
 import {NgModule, ModuleWithProviders} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ListComponent} from "./list.component";
-import {Config} from "./config";
+import {ListComponent} from "./components/list/list.component";
+import {ListItemComponent} from "./components/list-item/list-item.component";
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [ListComponent],
+    declarations: [ListComponent, ListItemComponent],
     exports: [ListComponent]
 })
 export class ListModule {
-    static forRoot(config: Config): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders {
         return {
             ngModule: ListModule,
-            providers: [
-                {provide: Config, useValue: config }
-            ]
+            providers: []
         };
     }
 }

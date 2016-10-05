@@ -1,3 +1,8 @@
 <main>
-    <h1>Example</h1>
+    <bc-list
+            [items]="items$"
+            [columns]="columns"
+            [rowAction]="action"
+            (sort)="sortList($event)">
+    </bc-list>
 </main>

@@ -15,7 +15,7 @@ import {ListModule} from "ng2-bc-list";
 @NgModule({
     imports: [
         BrowserModule,
-        ListModule.
+        ListModule
     ],
     declarations: [
         AppComponent

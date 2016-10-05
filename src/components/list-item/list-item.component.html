@@ -1,0 +1,6 @@
+<td *ngFor="let key of properties">
+    <div [ngClass]="{'clickable': hasAction(key)}" (click)="onClick(key)">
+        <div *ngIf="hasCallback(key)" class="list-item-callback" [innerHTML]="getCallbackHtml(key)"></div>
+        <span *ngIf="!hasCallback(key)">{{ getValue(key) }}</span>
+    </div>
+</td>

@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -46,7 +47,13 @@ module.exports = {
                 loader: 'raw!postcss!sass'
             }
         ]
-    }
+    },
+
+    plugins: [
+        new webpack.ProvidePlugin({
+            _: "lodash"
+        })
+    ]
 };
 
 function root(args) {
