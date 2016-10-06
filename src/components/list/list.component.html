@@ -9,7 +9,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of (items | async)" (click)="onRowClick(item)">
+    <tr *ngFor="let item of items|async" (click)="onRowClick(item)">
         <bc-list-item [item]="item" [properties]="properties" [columns]="columns"></bc-list-item>
     </tr>
     </tbody>

@@ -24,7 +24,28 @@ module.exports = function (config) {
             noInfo: true
         },
 
-        reporters: ['progress'],
+        coverageReporter: {
+            dir: 'coverage/',
+            reporters: [{
+                type: 'json',
+                dir: 'coverage',
+                subdir: 'json',
+                file: 'coverage-final.json'
+            }]
+        },
+
+        remapIstanbulReporter: {
+            src: 'coverage/json/coverage-final.json',
+            reports: {
+                lcovonly: 'coverage/json/lcov.info',
+                html: 'coverage/html',
+                'text': null
+            },
+            timeoutNotCreated: 1000, // default value
+            timeoutNoMoreFiles: 1000 // default value
+        },
+
+        reporters: ["mocha", "coverage", "karma-remap-istanbul"],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
