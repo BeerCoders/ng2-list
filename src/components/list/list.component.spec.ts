@@ -22,6 +22,8 @@ describe('ListComponent', () => {
 
     let columns: {[id: string]: Column};
     let rowAction: Action;
+    let items = [{id: 1, name: 'I am item', nested: {id: 1, name: 'I am nested'}}];
+    let subject :Subject<TestItem[]>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -36,8 +38,7 @@ describe('ListComponent', () => {
         fixture = TestBed.createComponent(ListComponent);
         comp = fixture.componentInstance;
 
-        let subject = new Subject<TestItem[]>();
-        subject.startWith([{id: 1, name: 'I am item', nested: {id: 1, name: 'I am nested'}}]);
+        subject = new Subject<TestItem[]>();
 
         columns = {
             'id': {sortable: true},
@@ -62,6 +63,19 @@ describe('ListComponent', () => {
 
         let elem = fixture.debugElement.query(By.css('th:first-child'));
         elem.triggerEventHandler('click', null);
+
         expect(selectedCol).toBe(Object.keys(columns)[0]);
+    });
+
+    it('should subscribe items', () => {
+        let expectedItems:TestItem[];
+
+        comp.items.subscribe((data:TestItem[]) => expectedItems=data);
+        subject.next(items);
+        expect(expectedItems.length).toBe(items.length);
+
+        if(items.length > 0){
+            expect(expectedItems[0].id).toBe(items[0].id);
+        }
     });
 });
