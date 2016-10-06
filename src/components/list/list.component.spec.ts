@@ -15,6 +15,7 @@ import {Action} from "../../model/action";
 import {TestItem, RouterStub} from "../../test/mock";
 import {ListItemComponent} from "../list-item/list-item.component";
 import {Router} from "@angular/router";
+import {SortEvent} from "../../model/sort_event";
 
 describe('ListComponent', () => {
     let fixture: ComponentFixture<ListComponent>;
@@ -59,7 +60,7 @@ describe('ListComponent', () => {
 
     it('should raise sort event when clicked', () => {
         let selectedCol: string;
-        comp.onSort.subscribe((col: string) => selectedCol = col);
+        comp.onSort.subscribe((event: SortEvent) => selectedCol = event.key);
 
         let elem = fixture.debugElement.query(By.css('th:first-child'));
         elem.triggerEventHandler('click', null);

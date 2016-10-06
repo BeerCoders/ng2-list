@@ -5,6 +5,7 @@ import {Entity} from "../../model/entity";
 import {Column} from "../../model/column";
 import {Action} from "../../model/action";
 import {ObjectService} from "../../services/static/object.service";
+import {SortEvent} from "../../model/sort_event";
 
 declare var _: any;
 
@@ -17,7 +18,7 @@ export class ListComponent implements OnChanges {
     @Input() items: Observable<Entity[]>;
     @Input() columns: {[id: string]: Column};
     @Input() rowAction: Action;
-    @Output() onSort: EventEmitter<string> = new EventEmitter<string>();
+    @Output() onSort: EventEmitter<SortEvent> = new EventEmitter<SortEvent>();
 
     protected properties: string[] = [];
 
@@ -84,8 +85,8 @@ export class ListComponent implements OnChanges {
         }
     }
 
-    toggleSort(col:Column){
-        switch (col.sort){
+    toggleSort(col: Column) {
+        switch (col.sort) {
             case 'asc':
                 col.sort = 'desc';
                 break;
