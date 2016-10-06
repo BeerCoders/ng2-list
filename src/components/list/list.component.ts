@@ -39,7 +39,11 @@ export class ListComponent implements OnChanges {
     sort(key: string) {
         let col = this.getColumn(key);
         if (col && col.sortable) {
-            this.onSort.next(key);
+            this.toggleSort(col);
+            this.onSort.next({
+                key: key,
+                sort: col.sort
+            });
         }
     }
 
@@ -77,6 +81,17 @@ export class ListComponent implements OnChanges {
                     this.columns[key].title = _.camelCase(key);
                 }
             });
+        }
+    }
+
+    toggleSort(col:Column){
+        switch (col.sort){
+            case 'asc':
+                col.sort = 'desc';
+                break;
+            default:
+                col.sort = 'asc';
+                break;
         }
     }
 }

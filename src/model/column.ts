@@ -11,6 +11,7 @@ import {Entity} from "./entity";
 
 export interface Column {
     sortable: boolean;
+    sort?:string;
     title?: string;
     action?: Action;
     callback?: (arg: Entity)=>string;

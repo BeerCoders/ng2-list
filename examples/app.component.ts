@@ -29,7 +29,7 @@ export class AppComponent {
     protected items$: Observable<Item[]>;
     protected action: {path:'/items', property:'id'};
     protected columns = {
-        'id': {sortable:true},
+        'id': {sortable:true, sort: 'desc'},
         'name': {sortable:false, title:'Display Name', action:{path:'/items', property:'id'}},
         'nested.name': {sortable:false, action:{path:'/nested/item', property:'nested.id'}},
         'callback': {sortable:false, callback:this.customColumn},
