@@ -16,7 +16,5 @@ install:
   - npm install
 before_script:
   - sh -e /etc/init.d/xvfb start
-  - npm run test-watch &
-  - sleep 10
 script:
-  - npm run e2e
+  - npm run test
